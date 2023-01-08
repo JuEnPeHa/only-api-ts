@@ -1,7 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import helmet from 'helmet';
+// import helmet from 'helmet';
 import compression from 'compression';
 import { Database } from './database.js';
 import ubicationRoutes from './routes/ubicationRoutes.js';
@@ -20,9 +20,10 @@ class Server {
     
     config() {
         this.app.set('port', process.env.PORT || 5289);
+        this.app.set('trust proxy', true);
         this.app.use(morgan('dev'));
         this.app.use(cors());
-        this.app.use(helmet());
+        // this.app.use(helmet());
         this.app.use(compression());
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: false }));
